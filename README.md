@@ -21,3 +21,6 @@ This Project :
   flutter run -t lib/main.dart --release
 
  ** Release mode only can be run in real device
+ 
+ ## Link Repository
+ https://github.com/Suzaku10/news-innocent
