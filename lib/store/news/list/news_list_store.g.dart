@@ -16,6 +16,13 @@ mixin _$NewsListStore on _NewsListStore, Store {
       (_$newsStatusComputed ??= Computed<NetworkState>(() => super.newsStatus,
               name: '_NewsListStore.newsStatus'))
           .value;
+  Computed<List<NewsResponse>>? _$slideShowComputed;
+
+  @override
+  List<NewsResponse> get slideShow => (_$slideShowComputed ??=
+          Computed<List<NewsResponse>>(() => super.slideShow,
+              name: '_NewsListStore.slideShow'))
+      .value;
 
   final _$newsAtom = Atom(name: '_NewsListStore.news');
 
@@ -47,6 +54,21 @@ mixin _$NewsListStore on _NewsListStore, Store {
     });
   }
 
+  final _$initialIndexAtom = Atom(name: '_NewsListStore.initialIndex');
+
+  @override
+  int get initialIndex {
+    _$initialIndexAtom.reportRead();
+    return super.initialIndex;
+  }
+
+  @override
+  set initialIndex(int value) {
+    _$initialIndexAtom.reportWrite(value, super.initialIndex, () {
+      super.initialIndex = value;
+    });
+  }
+
   final _$fetchNewsAsyncAction = AsyncAction('_NewsListStore.fetchNews');
 
   @override
@@ -54,11 +76,27 @@ mixin _$NewsListStore on _NewsListStore, Store {
     return _$fetchNewsAsyncAction.run(() => super.fetchNews());
   }
 
+  final _$_NewsListStoreActionController =
+      ActionController(name: '_NewsListStore');
+
+  @override
+  void changeIndex(int newIndex) {
+    final _$actionInfo = _$_NewsListStoreActionController.startAction(
+        name: '_NewsListStore.changeIndex');
+    try {
+      return super.changeIndex(newIndex);
+    } finally {
+      _$_NewsListStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
 news: ${news},
-newsStatus: ${newsStatus}
+initialIndex: ${initialIndex},
+newsStatus: ${newsStatus},
+slideShow: ${slideShow}
     ''';
   }
 }

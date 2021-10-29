@@ -15,6 +15,9 @@ abstract class _NewsListStore with Store {
   @observable
   ObservableFuture? _newsFetch;
 
+  @observable
+  int initialIndex = 0;
+
   @computed
   NetworkState get newsStatus {
     if (_newsFetch?.status == FutureStatus.rejected) {
@@ -26,6 +29,15 @@ abstract class _NewsListStore with Store {
         : NetworkState.loaded;
   }
 
+  @computed
+  List<NewsResponse> get slideShow {
+    try {
+      return news.take(3).toList();
+    } catch (e) {
+      return [];
+    }
+  }
+
   @action
   Future<void> fetchNews() async {
     try {
@@ -35,4 +47,7 @@ abstract class _NewsListStore with Store {
       rethrow;
     }
   }
+
+  @action
+  void changeIndex(int newIndex) => initialIndex = newIndex;
 }
