@@ -5,10 +5,11 @@ import 'package:news_innocent/utils/function_helper.dart';
 
 AppBar mainAppBar() {
   return AppBar(
+    elevation: 1,
     systemOverlayStyle: const SystemUiOverlayStyle(statusBarColor: pink),
     title: Image.asset(
       getSourceByName('logo_celebrities_id'),
-      height: kToolbarHeight - 16,
+      height: kToolbarHeight - 20,
     ),
     centerTitle: true,
     backgroundColor: white,
@@ -17,16 +18,18 @@ AppBar mainAppBar() {
 
 AppBar detailAppBar() {
   return AppBar(
+    elevation: 1,
     systemOverlayStyle: const SystemUiOverlayStyle(statusBarColor: pink),
+    automaticallyImplyLeading: false,
     title: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Image.asset(
           getSourceByName('logo_celebrities_id'),
-          height: kToolbarHeight - 16,
+          height: kToolbarHeight - 20,
         ),
         const Text(
-          'K-POP',
+          'Genre',
           style: TextStyle(color: pink, fontSize: 14),
         )
       ],

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:news_innocent/utils/register.dart';
 import 'package:news_innocent/view/news/list/news_list_view.dart';
 
 void main() {
+  register.doRegister();
   runApp(const MyApp());
 }
 
