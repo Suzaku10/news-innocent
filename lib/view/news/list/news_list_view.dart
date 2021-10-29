@@ -53,6 +53,7 @@ class _NewsListViewState extends State<NewsListView> {
     return Observer(
       builder: (BuildContext context) => ListView.separated(
           padding: const EdgeInsets.all(16),
+          physics: const BouncingScrollPhysics(),
           itemBuilder: (context, index) => _newsItem(_listStore.news[index]),
           separatorBuilder: (context, index) => Container(
                 padding: const EdgeInsets.symmetric(vertical: 24),
