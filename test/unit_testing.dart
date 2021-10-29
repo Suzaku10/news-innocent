@@ -15,4 +15,12 @@ void main() {
       expect(store.news.isNotEmpty, false);
     }
   });
+
+  test('change index', () async {
+    NewsListStore store = GetIt.I.get();
+    expect(store.initialIndex, 0);
+
+    store.changeIndex(1);
+    expect(store.initialIndex, 1);
+  });
 }
